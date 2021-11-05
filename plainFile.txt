@@ -1,0 +1,4 @@
+what will the encrypted text look like?
+remember to preserve the lines.
+this text has no capital letters, or digits.
+was this an 'easy' assignment?
