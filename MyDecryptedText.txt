@@ -1,4 +1,2 @@
-what will the encrypted text look like?
-remember to preserve the lines.
-this text has no capital letters, or digits.
-was this an 'easy' assignment?
+testing to see if numbers such as 1234 get carried over properly.
+we'll see how this works.
