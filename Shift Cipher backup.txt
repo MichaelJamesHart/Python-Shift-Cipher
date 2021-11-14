@@ -6,10 +6,8 @@
 # set the variable lowerCharacter to be the element that is in the same position in the lower-case alphabet list.
 # If the argument is not in the upper-case alphabet list, set lowerCharacter to be equal to the argument.
 def upperToLower(character):
-    lowerAlphaList = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s",
-                      "t", "u", "v", "w", "x", "y", "z"]
-    upperAlphaList = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S",
-                      "T", "U", "V", "W", "X", "Y", "Z"]
+    lowerAlphaList = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+    upperAlphaList = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
     lowerCharacter = ""
     if character in upperAlphaList:
         lowerCharacter = lowerAlphaList[upperAlphaList.index(character)]
@@ -17,10 +15,8 @@ def upperToLower(character):
         lowerCharacter = character
     return lowerCharacter
 
-
 # Create a list that holds each index in the file that is an upper-case letter, to be used when decrypting.
 upperCaseIndexes = []
-
 
 # This function carries out shift cipher encryption.
 # Assume that the value of shift is between 0 and 31 inclusive, and the order of the characters is as follows:
@@ -29,16 +25,15 @@ upperCaseIndexes = []
 # For example, shiftEncrypt("apple", 3) will RETURN the string "dssoh"
 def shiftEncrypt(plainText, shift):
     encryptedWord = ""
-    alphaList = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t",
-                 "u", "v", "w", "x", "y", "z", " ", "'", ";", ".", "?", ","]
+    alphaList = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " ", "'", ";", ".", "?", ","]
     for i in plainText:
-        # If the value of (the index of a character + shift) is less than
-        # 31, then that value will be the index used to assign the new element
-        # for the encrypted word.
+        # If the value of (the index of a character + shift) is less than 
+        # 31, then that value will be the index used to assign the new element 
+        # for the encrypted word.        
         if (alphaList.index(upperToLower(i)) + shift) < 32:
             encryptedWord += upperToLower(alphaList[alphaList.index(upperToLower(i)) + shift])
-        # If the value of (the index of a character + shift) is greater than
-        # 31, then 32 will be subtracted from that value to reach the index that
+        # If the value of (the index of a character + shift) is greater than 
+        # 31, then 32 will be subtracted from that value to reach the index that 
         # will be used to assign the new element for the encrypted word.
         else:
             encryptedWord += upperToLower(alphaList[(alphaList.index(upperToLower(i)) + shift) - 32])
@@ -52,8 +47,7 @@ def shiftEncrypt(plainText, shift):
 # For example, shiftDecrypt("dssoh", 3) will RETURN the string "apple"
 def shiftDecrypt(cipherText, shift):
     decryptedWord = ""
-    alphaList = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t",
-                 "u", "v", "w", "x", "y", "z", " ", "'", ";", ".", "?", ","]
+    alphaList = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " ", "'", ";", ".", "?", ","]
     for i in cipherText:
         # If the value of (the index of a character - shift) is greater than -1,
         # then that value will be the index used to assign the new element or the decrypted word.
@@ -83,12 +77,12 @@ def listFromString(aString):
         newList.append(upperToLower(i))
     return newList
 
-
 # Helper function for recording the indexes of upper-case letters in the document.
 def recordUpperIndexes(plainFile):
+
     # Open the file indicated by the file name plainText to read the contents and check if each character is upper-case.
     openingPlainFile = open(plainFile, "r")
-
+    
     # Create a variable fileContents with an empty string, to which all of the text from plainFile will be copied.
     fileContents = ""
     # Iterate through openingPlainFile to concatenate each letter of each word to the fileContents variable.
@@ -116,7 +110,7 @@ def recordUpperIndexes(plainFile):
 def MultiAlphaCipher(theKeys, plainFile):
     # Record the indexes of the upper case letters, to be used when decrypting.
     recordUpperIndexes(plainFile)
-
+    
     # Open the file indicated by the file name theKeys to read the file.
     readingTheKeys = open(theKeys, "r")
     # Each line in the file represents a shuffling of the characters and punctuation that will be used as a key.
@@ -124,11 +118,10 @@ def MultiAlphaCipher(theKeys, plainFile):
     # Setting line0, line1, and line2 to be empty strings, which will later be used to hold the contents of theKeys file.
     line0 = ""
     line1 = ""
-    line2 = ""
+    line2 = "" 
     # Create a list alphaList that holds the alphabet and other characters in the proper order,
     # to be referenced later by the encryption and decryption process.
-    alphaList = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t",
-                 "u", "v", "w", "x", "y", "z", " ", "'", ";", ".", "?", ","]
+    alphaList = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " ", "'", ";", ".", "?", ","]
     # Create an empty list called listOfTheKeys to hold all of the keys in a list
     # in the order that they appear in theKeys file.
     listOfTheKeys = []
@@ -141,15 +134,15 @@ def MultiAlphaCipher(theKeys, plainFile):
     # There are three seperate FOR iterations, each going through 32 indexes in listOfTheKeys
     # and concatenating the element to line0, line1, and line2 respectively.
     # Within these iterations, the helper function (upperToLower) makes any upper-case letters into lower-case.
-    for i in range(0, 32):
+    for i in range(0,32):
         line0 += upperToLower(listOfTheKeys[i])
-    for i in range(33, 65):
+    for i in range(33,65):
         line1 += upperToLower(listOfTheKeys[i])
-    for i in range(66, 98):
+    for i in range(66,98):
         line2 += upperToLower(listOfTheKeys[i])
     # line0 should contain the first line in the file theKeys
     # line1 should contain the second line in the file theKeys
-    # line2 should contain the third line in the file theKeys
+    # line2 should contain the third line in the file theKeys 
     # Close the file theKeys.
     readingTheKeys.close()
     # Use the helper function listFromString(aString) to create lists from the three key strings.
@@ -212,6 +205,7 @@ def MultiAlphaCipher(theKeys, plainFile):
 # The function should decrypt the contents of cipherFile by reversing the encryption algorithm,
 # and save the plain text in a file named MyDecryptedText.txt.
 def MultiAlphaDecipher(theKeys, cipherFile):
+ 
     # Open the file indicated by theKeys argument.
     readingTheKeys = open(theKeys, "r")
     # Set line0, line1, and line2 to be empty strings, which will later be used to hold the contents of theKeys file.
@@ -220,8 +214,7 @@ def MultiAlphaDecipher(theKeys, cipherFile):
     line2 = ""
     # Include a list called alphaList that holds the alphabet and other characters in the proper order,
     # to be referenced later by the encryption and decryption process.
-    alphaList = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t",
-                 "u", "v", "w", "x", "y", "z", " ", "'", ";", ".", "?", ","]
+    alphaList = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " ", "'", ";", ".", "?", ","]
     # Making an empty list called listOfTheKeys
     # to hold all of the keys in a list in the order that they appear in theKeys file.
     listOfTheKeys = []
@@ -234,11 +227,11 @@ def MultiAlphaDecipher(theKeys, cipherFile):
     # There are three seperate FOR iterations, each going through 32 indexes in listOfTheKeys and concatenating the
     # element to line0, line1, and line2 respectively.
     # Within these iterations, the helper function (upperToLower) will make any upper-case letters into lower-case.
-    for i in range(0, 32):
+    for i in range(0,32):
         line0 += upperToLower(listOfTheKeys[i])
-    for i in range(33, 65):
+    for i in range(33,65):
         line1 += upperToLower(listOfTheKeys[i])
-    for i in range(66, 98):
+    for i in range(66,98):
         line2 += upperToLower(listOfTheKeys[i])
     # Close theKeys file.
     readingTheKeys.close()
@@ -253,7 +246,7 @@ def MultiAlphaDecipher(theKeys, cipherFile):
     openingCipherFile = open(cipherFile, "r")
     # Create a variable with an empty string called cipherFileContents to hold all of the text from the cipherFile.
     cipherFileContents = ""
-
+    
     # Iterate through the openingCipherFile to add each letter of each
     # word to the cipherFileContents. Calls on the helper function upperToLower
     # to ensure that any upper-case character is converted to lower-case.
@@ -265,7 +258,7 @@ def MultiAlphaDecipher(theKeys, cipherFile):
     # Set count = 0, then iterate through every character (char) in cipherFileContents.
     count = 0
     for char in cipherFileContents:
-        # If the character is not in the alphabet list, this character will be
+        # If the character is not in the alphabet list, this character will be 
         # concatenated to decryptedString as it is.
         if upperToLower(char) not in alphaList:
             decryptedString += char
@@ -284,7 +277,7 @@ def MultiAlphaDecipher(theKeys, cipherFile):
         elif count == 2:
             decryptedString += alphaList[key2.index(char)]
             count = 0
-
+            
     # Iterate through the decrypted string and capitalize the letters that were originally upper-case.
     # Make decryptedString a list for this part.
     decryptedStringAsList = list(decryptedString)
@@ -293,15 +286,15 @@ def MultiAlphaDecipher(theKeys, cipherFile):
         decryptedStringIndex = decryptedStringIndex + 1
         if decryptedStringIndex in upperCaseIndexes:
             decryptedStringAsList[decryptedStringIndex] = decryptedStringAsList[decryptedStringIndex].upper()
-
+            
     # Convert the list back to a string.
     finalString = "".join(decryptedStringAsList)
-
+            
     # Open the file "MyDecryptedText.txt".
     decryptedFile = "MyDecryptedText.txt"
     writingDecryptedText = open(decryptedFile, "w")
     # Write the completed decryptedString string to the MyDecryptedText.txt file.
     writingDecryptedText.write(finalString)
-
+    
     # Close the MyDecryptedText.txt file.
     writingDecryptedText.close()
