@@ -1,7 +1,9 @@
 # Python-Shift-Cipher
  A shift cipher that can both encrypt and decrypt text.
 
-Algorithm Outline:
+Project code is in the file "Shift Cipher.ipynb".
+
+Function of the program:
 
 
 
